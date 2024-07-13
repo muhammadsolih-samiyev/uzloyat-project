@@ -1,0 +1,187 @@
+/* Category.css */
+
+/* General styling for the category component */
+.category {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 24px 15px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+/* Styling for the add button container */
+.category-adds {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.category-adds h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.add-category-btn {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+/* Table styling */
+.customers {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.customers thead {
+  background-color: #1890ff;
+  color: white;
+}
+
+.customers th, .customers td {
+  padding: 12px 15px;
+  text-align: left;
+}
+.table_th{
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  width: 30%;
+
+}
+.customers th {
+  font-weight: 600;
+}
+
+.customers tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.customers tbody tr:hover {
+  background-color: #e2e2e2;
+}
+
+.customers img {
+  max-width: 100px;
+  border-radius: 4px;
+}
+
+/* Button styling */
+.edit {
+  color: #1890ff;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.delete {
+  color: #ff4d4f;
+  font-size: 16px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #1890ff;
+  animation: spin 1s ease infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Modal styling */
+.ant-modal-content {
+  border-radius: 8px;
+}
+
+.ant-modal-header {
+  background-color: #f4f4f4;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.ant-modal-title {
+  font-size: 20px;
+  color: #333;
+}
+
+.ant-modal-body {
+  padding: 20px;
+  font-size: 14px;
+}
+
+.ant-modal-footer {
+  border-top: none;
+  padding: 10px 20px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-buttons .cancel_btn,
+.modal-buttons .save_btn {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-buttons .cancel_btn {
+  background-color: #d9d9d9;
+  color: #333;
+}
+
+.modal-buttons .save_btn {
+  background-color: #1890ff;
+  color: white;
+}
+
+.modal-buttons .cancel_btn:hover {
+  background-color: #c4c4c4;
+}
+
+.modal-buttons .save_btn:hover {
+  background-color: #40a9ff;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+  border-color: #1890ff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
+}

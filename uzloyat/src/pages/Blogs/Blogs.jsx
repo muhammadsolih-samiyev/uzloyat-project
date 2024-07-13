@@ -12,7 +12,7 @@ const Category = () => {
   const [data, setData] = useState({ title_uz: '', text_uz: '', images: null, author: '' });
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-  const urlImg = 'https://api.dezinfeksiyatashkent.uz/api/uploads/images';
+  const urlImg = 'https://api.dezinfeksiyatashkent.uz/api/uploads/images/';
 
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzkwYzBiNzktMWFkNy00NGM1LWE5ODMtMzUzMzMzNjZmOGU5IiwidG9rZW5fdHlwZSI6ImFjY2VzcyIsImlhdCI6MTcyMDg1NTE5NywiZXhwIjoxNzUyMzkxMTk3fQ.yoE3F-EOggdKK5H2S6Gp-o3_4BTYK8z79m5skTkNUfs';
 
@@ -23,6 +23,7 @@ const Category = () => {
       .then((data) => {
         setCategories(data.data);
         setLoading(false);
+        console.log(data?.data);
       })
       .catch((error) => {
         console.error('Error fetching blogs:', error);
@@ -187,7 +188,7 @@ const Category = () => {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                  <img src={`${urlImg}${item.images}`} alt={`Image`} />
+                  <img src={`${urlImg}${item.blog_images[0]?.image?.src}`} alt={`Image`} />
                 </td>
                 <td>{item.title_uz}</td>
                 <td>{item.text_uz}</td>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal, message, Button } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { deleteFaqItem, getFaq, postFaq, updateFaq } from '../../api/FaqsAction';
+
 function Faqs() {
   const [loading, setLoading] = useState(true);
   const [faqData, setFaqData] = useState([])

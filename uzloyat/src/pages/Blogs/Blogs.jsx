@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, message, Button } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
-import './Blogs.css';
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
@@ -10,6 +9,7 @@ const Category = () => {
   const [openAddModal, setOpenAddModal] = useState(false);
   const [id, setId] = useState(null);
   const [data, setData] = useState({ title_uz: '', text_uz: '', images: null, author: '' });
+  const [previewImage, setPreviewImage] = useState(null); // Add state for image preview
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const urlImg = 'https://api.dezinfeksiyatashkent.uz/api/uploads/images/';
@@ -37,12 +37,14 @@ const Category = () => {
 
   const handleEdit = (item) => {
     setId(item.id);
-    setData({ title_uz: item.title_uz, text_uz: item.text_uz, images: item.images, author: item.author });
+    setData({ title_uz: item.title_uz, text_uz: item.text_uz, images: item.blog_images, author: item.author });
+    setPreviewImage(`${urlImg}${item.blog_images[0]?.image?.src}`); // Set preview image
     setOpenEditModal(true);
   };
 
   const handleAdd = () => {
-    setData({ title_uz: '', text_uz: '',  author: '', images: null });
+    setData({ title_uz: '', text_uz: '', author: '', images: null });
+    setPreviewImage(null); // Clear preview image
     setOpenAddModal(true);
   };
 
@@ -58,15 +60,15 @@ const Category = () => {
         if (res.success) {
           const newCategories = categories.filter((category) => category.id !== id);
           setCategories(newCategories);
-          message.success('blogs deleted successfully.');
+          message.success('Blog deleted successfully.');
         } else {
-          message.error('Failed to delete blogs.');
+          message.error('Failed to delete blog.');
         }
         setOpenDeleteModal(false);
       })
       .catch((error) => {
-        console.error('Error deleting blogs:', error);
-        message.error('Failed to delete blogs.');
+        console.error('Error deleting blog:', error);
+        message.error('Failed to delete blog.');
         setOpenDeleteModal(false);
       });
   };
@@ -93,14 +95,14 @@ const Category = () => {
         if (res.success) {
           handleClose();
           setCategories([...categories, res.data]);
-          message.success('blogs added successfully.');
+          message.success('Blog added successfully.');
         } else {
-          message.error('Failed to add blogs.');
+          message.error('Failed to add blog.');
         }
       })
       .catch((error) => {
-        console.error('Error adding blogs:', error);
-        message.error('Failed to add blogs.');
+        console.error('Error adding blog:', error);
+        message.error('Failed to add blog.');
       });
   };
 
@@ -126,14 +128,14 @@ const Category = () => {
         if (res.success) {
           handleClose();
           getCategory();
-          message.success('blogs updated successfully.');
+          message.success('Blog updated successfully.');
         } else {
-          message.error('Failed to update blogs.');
+          message.error('Failed to update blog.');
         }
       })
       .catch((error) => {
-        console.error('Error updating blogs:', error);
-        message.error('Failed to update blogs.');
+        console.error('Error updating blog:', error);
+        message.error('Failed to update blog.');
       });
   };
 
@@ -150,6 +152,12 @@ const Category = () => {
 
   const deleteCategory = () => {
     handleDelete(id);
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setData({ ...data, images: file });
+    setPreviewImage(URL.createObjectURL(file)); // Set preview image for new file
   };
 
   return (
@@ -179,7 +187,7 @@ const Category = () => {
         <tbody>
           {loading ? (
             <tr>
-              <td colSpan="5">
+              <td colSpan="6">
                 <div className="spinner"></div>
               </td>
             </tr>
@@ -188,7 +196,7 @@ const Category = () => {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                  <img src={`${urlImg}${item.blog_images[0]?.image?.src}`} alt={`Image`} />
+                  <img src={`${urlImg}${item.blog_images[0]?.image?.src}`} alt="1" />
                 </td>
                 <td>{item.title_uz}</td>
                 <td>{item.text_uz}</td>
@@ -232,17 +240,24 @@ const Category = () => {
             onChange={(e) => setData({ ...data, text_uz: e.target.value })}
           />
           <label>Author:</label>
-<input
-  type="text"
-  value={data.author}
-  onChange={(e) => setData({ ...data, author: e.target.value })}
-/>
-
-          <label>Image:</label>
+          <input
+            type="text"
+            value={data.author}
+            onChange={(e) => setData({ ...data, author: e.target.value })}
+          />
+          <label>Existing Image:</label>
+          {previewImage && (
+            <img
+              src={previewImage}
+              alt="Existing"
+              style={{ width: '100px', marginBottom: '10px' }}
+            />
+          )}
+          <label>New Image:</label>
           <input
             type="file"
-            onChange={(e) => setData({ ...data, images: e.target.files[0] })}
-            accept="images/*"
+            onChange={handleImageChange}
+            accept="image/*"
           />
           <div className="modal-buttons">
             <button type="button" className="cancel_btn" onClick={handleClose}>
@@ -275,12 +290,11 @@ const Category = () => {
             value={data.author}
             onChange={(e) => setData({ ...data, author: e.target.value })}
           />
-
           <label>Image:</label>
           <input
             type="file"
-            onChange={(e) => setData({ ...data, images: e.target.files[0] })}
-            accept="images/*"
+            onChange={handleImageChange}
+            accept="image/*"
           />
           <div className="modal-buttons">
             <button type="button" className="cancel_btn" onClick={handleClose}>
@@ -306,7 +320,7 @@ const Category = () => {
           </Button>
         ]}
       >
-        <p>Are you sure you want to delete this category?</p>
+        <p>Are you sure you want to delete this blog?</p>
       </Modal>
     </div>
   );

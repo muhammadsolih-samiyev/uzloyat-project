@@ -1,0 +1,8 @@
+.table_option {
+    background: transparent;
+    border: none;
+}
+
+.table_option option {
+    color: #000;
+}

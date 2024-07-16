@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.logo1{
+  -webkit-box-shadow: 2px -5px 116px 26px rgba(22,119,255,0.73);
+  -moz-box-shadow: 2px -5px 116px 26px rgba(22,119,255,0.73);
+  box-shadow: 2px -5px 116px 26px rgba(22,119,255,0.73);
+}
+.logo2{
+  -webkit-box-shadow: -2px -4px 35px -3px rgba(22,119,255,0.73);
+-moz-box-shadow: -2px -4px 35px -3px rgba(22,119,255,0.73);
+box-shadow: -2px -4px 35px -3px rgba(22,119,255,0.73);
+}

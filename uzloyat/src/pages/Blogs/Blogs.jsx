@@ -44,7 +44,7 @@ const Category = () => {
 
   const handleAdd = () => {
     setData({ title_uz: '', text_uz: '', author: '', images: null });
-    setPreviewImage(null); // Clear preview image
+    setPreviewImage(null);
     setOpenAddModal(true);
   };
 
@@ -221,6 +221,7 @@ const Category = () => {
                 </td>
               </tr>
             ))
+            
           )}
         </tbody>
       </table>

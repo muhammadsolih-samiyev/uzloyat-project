@@ -18,7 +18,7 @@ function App() {
     token ? setCheck(true) : setCheck(false);
   }, []);
   const router = createBrowserRouter([
-    // nimadir
+   
     {
       path: "/login",
       element: <Login setCheck={setCheck} />,

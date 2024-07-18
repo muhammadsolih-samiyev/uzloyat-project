@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react';
 import { Modal, message, Button } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
@@ -16,6 +18,7 @@ const News = () => {
 
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzkwYzBiNzktMWFkNy00NGM1LWE5ODMtMzUzMzMzNjZmOGU5IiwidG9rZW5fdHlwZSI6ImFjY2VzcyIsImlhdCI6MTcyMDg1NTE5NywiZXhwIjoxNzUyMzkxMTk3fQ.yoE3F-EOggdKK5H2S6Gp-o3_4BTYK8z79m5skTkNUfs';
 
+
   const getNews = () => {
     setLoading(true);
     fetch('https://api.dezinfeksiyatashkent.uz/api/news/')
@@ -23,7 +26,6 @@ const News = () => {
       .then((data) => {
         setNews(data.data);
         setLoading(false);
-        // console.log(data.data);
       })
       .catch((error) => {
         console.error('Error fetching news:', error);
@@ -58,8 +60,8 @@ const News = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {
-          const newNews = news.filter((item) => item.id !== id);
-          setNews(newNews);
+          const updatedNews = news.filter((item) => item.id !== id);
+          setNews(updatedNews);
           message.success('News deleted successfully.');
         } else {
           message.error('Failed to delete news.');
@@ -72,6 +74,7 @@ const News = () => {
         setOpenDeleteModal(false);
       });
   };
+  
 
   const addNews = (e) => {
     e.preventDefault();

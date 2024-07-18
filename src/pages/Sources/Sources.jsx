@@ -157,7 +157,7 @@ const Sources = () => {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={item.image ? `${urlImg}${item.image?.src}` : 'default-image-url'}
+                    src={item.src ? `${urlImg}${item?.src}` : 'default-image-url'}
                     alt={item.title}
                     style={{ width: '50px', height: '50px' }}
                   />

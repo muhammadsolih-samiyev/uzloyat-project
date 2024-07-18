@@ -40,7 +40,7 @@ const Sources = () => {
   const handleEdit = (item) => {
     setId(item.id);
     setFormData({ title: item.title, category: item.category, images: item.image });
-    setPreviewImage(`${urlImg}${item.image?.src}`);
+    setPreviewImage(`${urlImg}${item?.src}`);
     setOpenEditModal(true);
   };
 

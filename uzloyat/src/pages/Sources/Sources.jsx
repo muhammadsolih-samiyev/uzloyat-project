@@ -195,7 +195,7 @@ const Sources = () => {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                <img src={item.source_images && item.source_images[0] ? `${urlImg}${item.source_images[0]?.image?.src}` : 'default-image-url'} alt="1" />
+                <img src={`${urlImg}${item.src}`} alt="1" />
 
 
                 </td>

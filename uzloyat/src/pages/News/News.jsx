@@ -197,7 +197,7 @@ const News = () => {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`${urlImg}${item.news_images[0]?.image?.src}`}
+                    src={`${urlImg}${item.news_images[0]?.['image.src']}`}
                     alt="news"
                     style={{ width: '100px' }}
                   />
